@@ -1,31 +1,48 @@
 show databases;
 show tables;
-create database if not exists arqcli;
-use arqcli;
-create table if not exists regcli (
-id int not null auto_increment ,
+create database if not exists cadastros;
+use cadastros;
+create table if not exists cliente (
+idcliente int not null auto_increment ,
 nome varchar(120) not null ,
 salario dec(8,2),
 data_nasc date,
-cidade varchar(60),
-estado varchar (2),
+idregiao int(11),
+idbairro int(11),
+idcidade int(11),
+idestado int (11),
 sexo enum('M', 'F'),
 peso dec(5,2),
 altura dec(3,2),
 nacionalidade varchar(20) default 'Brasil',
 hoby text,
-primary key(id)
+primary key(idcliente),
+foreign key(idbairro) references bairro(idbairro)
 )default charset = utf8mb4;
-desc regcli;
-status;
-insert into regcli 
-(nome, salario, data_nasc, cidade ,estado ,sexo ,peso ,altura ,nacionalidade ,hoby) 
+
+desc cliente;
+
+drop table cliente;
+insert into cliente 
+(nome, salario, data_nasc, idregiao, idbairro, idcidade, idestado ,sexo ,peso ,altura ,nacionalidade ,hoby) 
 values 
-( 'Gerson', '1500.12', '1957-03-07', 'Belo Horizonte', 'MG', 'M', '80.53', '1.72', 'Bras', 'Corrida');
+( 'Gerson', '1500.12', '1957-03-07', '01', '01', '01', '01', 'M', '80.53', '1.72', 'Bras', 'Corrida');
 
-drop database arqcli;
 
-select * from regcli;
+create table if not exists bairro (
+idbairro int not null auto_increment ,
+nome varchar(120) not null ,
+primary key(idbairro)
+)default charset = utf8mb4;
+
+desc bairro;
+status;
+insert into bairro 
+(nome) 
+values 
+( 'Bomfim');
+
+select * from cliente;
 select id, nome, data_nasc from regcli;
 ( 'Bru', '4500.12', '1984-03-07', 'Pedra Azil', 'MG', 'F', '50.53', '1.62', 'Bras', 'GOLO');
 
