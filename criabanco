@@ -46,7 +46,7 @@ values
 select * from cliente;
 
 
-select id, nome, data_nasc from cliente;
+select idcliente, nome, data_nasc from cliente;
 
 select cliente.nome, bairro.nome from cliente inner join bairro  on cliente.idbairro = bairro.idbairro;
 
