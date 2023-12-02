@@ -17,6 +17,7 @@ altura dec(3,2),
 nacionalidade varchar(20) default 'Brasil',
 hoby text,
 primary key(idcliente),
+constraint fk_idbairro 
 foreign key(idbairro) references bairro(idbairro)
 )default charset = utf8mb4;
 
@@ -43,8 +44,21 @@ values
 ( 'Bomfim');
 
 select * from cliente;
-select id, nome, data_nasc from regcli;
-( 'Bru', '4500.12', '1984-03-07', 'Pedra Azil', 'MG', 'F', '50.53', '1.62', 'Bras', 'GOLO');
+
+
+select id, nome, data_nasc from cliente;
+
+select cliente.nome, bairro.nome from cliente inner join bairro  on cliente.idbairro = bairro.idbairro;
+
+select c.nome ba.nome from cliente c inner join bairro ba on c.idbairro = ba.idbairro;
+
+select cliente.nome as Cliente, bairro.nome as Bairro from cliente inner join bairro  on cliente.idbairro = bairro.idbairro;
+
+select cli.nome as Cliente, bai.nome as Bairro from cliente cli inner join bairro bai on cli.idbairro = bai.idbairro;
+
+select cli.* , bai.*  from cliente cli,  bairro bai where cli.idbairro = bai.idbairro;
+
+select cli.nome as Cliente , bai.nome as Bairro  from cliente cli,  bairro bai where cli.idbairro = bai.idbairro;
 
 insert into regcli 
 (nome, salario, data_nasc, cidade ,estado ,sexo ,peso ,altura ,nacionalidade ,hoby) 
